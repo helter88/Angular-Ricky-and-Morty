@@ -34,3 +34,9 @@ export interface Location {
   name: string;
   url: string;
 }
+
+export interface Character {
+  id: number;
+  name: string;
+  image: string;
+}

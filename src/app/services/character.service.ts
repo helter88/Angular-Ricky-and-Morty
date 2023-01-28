@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, switchMap } from 'rxjs';
+import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Result, Root } from '../models/ricky-and-morty';
+import { Character, Result, Root } from '../models/ricky-and-morty';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +12,19 @@ export class CharacterService {
 
   constructor(private http: HttpClient) {}
 
-  getCharacter(): Observable<Result[]> {
+  getCharacter(): Observable<Character[]> {
     return this.http.get<Root>(this.apiKey).pipe(
-      switchMap((resp) => {
-        return of(resp.results.slice(0, 10));
-      })
+      map((resp: Root) => this.transformData(resp)),
+      map((resp) => resp.slice(0, 10))
     );
+  }
+  transformData(data: Root): Character[] {
+    return data.results.map((resp) => {
+      return {
+        id: resp.id,
+        name: resp.name,
+        image: resp.image,
+      };
+    });
   }
 }
