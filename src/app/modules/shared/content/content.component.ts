@@ -13,7 +13,6 @@ export class ContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.characters.getCharacter().subscribe((val) => {
-      console.log(val);
       this.characterArr = val;
     });
   }

@@ -1,8 +1,11 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Character } from 'src/app/models/ricky-and-morty';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
 })
-export class CardComponent {}
+export class CardComponent {
+  @Input() character: Character | undefined;
+}

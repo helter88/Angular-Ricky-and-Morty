@@ -1,4 +1,10 @@
-<div class="bg-zinc-600 flex flex-col items-center px-12 py-7 gap-4">
-  <p class="text-white text-lg font-medium">Nazwa</p>
-  <img class="w-full object-cover" src="" alt="character-imag" />
+<div
+  class="bg-zinc-600 flex flex-col items-center px-12 py-7 gap-4 pb-14 rounded-xl"
+>
+  <p class="text-white text-lg font-medium">{{ character?.name }}</p>
+  <img
+    class="w-full object-cover rounded-xl"
+    [src]="character?.image"
+    [alt]="character?.name + ' image'"
+  />
 </div>
