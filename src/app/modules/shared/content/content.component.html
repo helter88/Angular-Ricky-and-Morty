@@ -1,8 +1,5 @@
 <main class="mt-10 grid grid-cols-3 gap-10 bg-slate-800 p-10">
-  <app-card></app-card>
-  <app-card></app-card>
-  <app-card></app-card>
-  <app-card></app-card>
-  <app-card></app-card>
-  <app-card></app-card>
+  <ng-container *ngFor="let char of characterArr">
+    <app-card></app-card>
+  </ng-container>
 </main>
