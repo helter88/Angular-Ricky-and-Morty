@@ -13,11 +13,26 @@
     </button>
   </div>
   <div class="mt-4">
-    <span class="mr-3 font-medium text-sm">Filter:</span>
-
-    <input type="radio" name="filter" value="All" />
-    <span>All characters</span>
-    <input type="radio" name="filter" value="Liked" />
-    <span>Liked characters</span>
+    <span class="mr-5 font-medium text-xl">Filter:</span>
+    <label class="mr-3">
+      <input
+        type="radio"
+        name="filter"
+        value="All"
+        [(ngModel)]="selectedRadioValue"
+        (change)="onRadioChange()"
+      />
+      All characters
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="filter"
+        value="Liked"
+        [(ngModel)]="selectedRadioValue"
+        (change)="onRadioChange()"
+      />
+      Liked characters
+    </label>
   </div>
 </div>
