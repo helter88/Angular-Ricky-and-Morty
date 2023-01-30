@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/ricky-and-morty';
 
 @Component({
@@ -8,4 +8,6 @@ import { Character } from 'src/app/models/ricky-and-morty';
 })
 export class CardComponent {
   @Input() character: Character | undefined;
+
+  constructor() {}
 }

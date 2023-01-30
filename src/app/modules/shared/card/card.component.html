@@ -7,7 +7,7 @@
     [src]="character?.image"
     [alt]="character?.name + ' image'"
   />
-  <div class="w-10">
-    <app-star-svg></app-star-svg>
+  <div class="w-10 cursor-pointer" title="Add to liked">
+    <app-star-svg [cardId]="character?.id?.toString()"></app-star-svg>
   </div>
 </div>
