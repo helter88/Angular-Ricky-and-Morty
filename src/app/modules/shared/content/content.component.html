@@ -1,5 +1,14 @@
 <main class="mt-10 grid grid-cols-3 gap-10 bg-slate-800 p-10">
-  <ng-container *ngFor="let char of characterArr">
-    <app-card [character]="char"></app-card>
+  <ng-container [ngSwitch]="radioValue">
+    <ng-container *ngSwitchCase="'Liked'">
+      <p class="text-white text-center col-span-3 font-medium text-2xl">
+        No liked characters
+      </p>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <ng-container *ngFor="let char of characterArr">
+        <app-card [character]="char"></app-card>
+      </ng-container>
+    </ng-container>
   </ng-container>
 </main>
