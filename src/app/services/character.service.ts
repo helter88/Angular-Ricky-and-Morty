@@ -12,7 +12,7 @@ export class CharacterService {
 
   constructor(private http: HttpClient) {}
 
-  getCharacter(): Observable<Character[]> {
+  getCharacters(): Observable<Character[]> {
     return this.http.get<Root>(this.apiKey).pipe(
       map((resp: Root) => this.transformData(resp)),
       map((resp) => resp.slice(0, 10))
@@ -20,6 +20,22 @@ export class CharacterService {
   }
   transformData(data: Root): Character[] {
     return data.results.map((resp) => {
+      return {
+        id: resp.id,
+        name: resp.name,
+        image: resp.image,
+      };
+    });
+  }
+
+  getLiked(arr: string[]): Observable<Character[]> {
+    return this.http
+      .get<Result[]>(this.apiKey + `/${arr}`)
+      .pipe(map((resp: Result[]) => this.transformLiked(resp)));
+  }
+
+  transformLiked(data: Result[]): Character[] {
+    return data.map((resp) => {
       return {
         id: resp.id,
         name: resp.name,

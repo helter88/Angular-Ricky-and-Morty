@@ -13,7 +13,7 @@ export class StarSvgComponent implements OnInit {
 
   constructor(private locStorage: LocStorageService) {}
 
-  changeColor() {
+  changeColor(): void {
     if (this.cardId) {
       if (this.likeStatus) {
         this.fillColor = `transparent`;
