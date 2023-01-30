@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Character, Result, Root } from '../models/ricky-and-morty';
+import { LocStorageService } from 'src/app/services/loc-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,10 @@ import { Character, Result, Root } from '../models/ricky-and-morty';
 export class CharacterService {
   private apiKey = environment.apiKey;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private locService: LocStorageService
+  ) {}
 
   getCharacters(): Observable<Character[]> {
     return this.http.get<Root>(this.apiKey).pipe(
@@ -28,19 +32,41 @@ export class CharacterService {
     });
   }
 
-  getLiked(arr: string[]): Observable<Character[]> {
-    return this.http
-      .get<Result[]>(this.apiKey + `/${arr}`)
-      .pipe(map((resp: Result[]) => this.transformLiked(resp)));
+  getLiked(): Observable<Character[] | []> {
+    let likedArr: string[] | number[] | null = this.locService.getLiked();
+    if (likedArr && likedArr.length !== 0) {
+      likedArr = likedArr.map((id) => Number(id));
+      console.log('get Like likedArr', likedArr);
+      return this.http
+        .get<Result[]>(this.apiKey + `/${likedArr}`)
+        .pipe(map((resp: Result[]) => this.transformLiked(resp)));
+    } else {
+      return of([]);
+    }
   }
 
-  transformLiked(data: Result[]): Character[] {
-    return data.map((resp) => {
-      return {
-        id: resp.id,
-        name: resp.name,
-        image: resp.image,
-      };
-    });
+  transformLiked(data: Result[] | Result): Character[] {
+    if (data instanceof Array) {
+      return data?.map((resp) => {
+        return {
+          id: resp.id,
+          name: resp.name,
+          image: resp.image,
+        };
+      });
+    } else {
+      return [
+        {
+          id: data.id,
+          name: data.name,
+          image: data.image,
+        },
+      ];
+    }
   }
+}
+function tab(
+  arg0: (rs: any) => void
+): import('rxjs').OperatorFunction<Result[], Result[]> {
+  throw new Error('Function not implemented.');
 }
