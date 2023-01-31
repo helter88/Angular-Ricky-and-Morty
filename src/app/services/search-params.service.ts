@@ -11,9 +11,14 @@ export class SearchParamsService {
   private SubjectData = new BehaviorSubject<string | null>(null);
 
   createSearchParam(text: string) {
-    this.router.navigate(['/'], {
-      queryParams: { search: text.toLowerCase() },
-    });
+    if (text === '') {
+      this.router.navigate(['/']);
+    } else {
+      this.router.navigate(['/'], {
+        queryParams: { search: text.toLowerCase() },
+      });
+    }
+
     this.SubjectData.next(text.toLowerCase());
   }
 
