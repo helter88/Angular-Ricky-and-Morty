@@ -36,7 +36,6 @@ export class CharacterService {
     let likedArr: string[] | number[] | null = this.locService.getLiked();
     if (likedArr && likedArr.length !== 0) {
       likedArr = likedArr.map((id) => Number(id));
-      console.log('get Like likedArr', likedArr);
       return this.http
         .get<Result[]>(this.apiKey + `/${likedArr}`)
         .pipe(map((resp: Result[]) => this.transformLiked(resp)));

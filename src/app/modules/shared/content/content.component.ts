@@ -18,7 +18,6 @@ export class ContentComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['radioValue'] && !changes['radioValue'].isFirstChange()) {
       this.characters.getLiked().subscribe((liked) => {
-        console.log('getLiked from content ', liked);
         this.likedCharacters = liked;
       });
     }
