@@ -21,10 +21,12 @@ export class FilterComponent {
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && this.inputText.length > 0) {
       this.searchParam.createSearchParam(this.inputText);
+      this.inputText = '';
     }
   }
 
   onSearchClick() {
     this.searchParam.createSearchParam(this.inputText);
+    this.inputText = '';
   }
 }
