@@ -13,8 +13,37 @@
       </ng-container>
     </ng-container>
     <ng-container *ngSwitchDefault>
-      <ng-container *ngFor="let char of characterArr">
-        <app-card [character]="char"></app-card>
+      <ng-container *ngIf="inputCharacterName">
+        <ng-container *ngIf="!noCharacterFoundMessage">
+          <div class="col-span-3 grid grid-cols-3">
+            <button
+              (click)="handleBackToAll()"
+              class="bg-white text-slate-800 font-medium text-l py-3 rounded-xl col-start-2"
+            >
+              Back to All
+            </button>
+          </div>
+
+          <ng-container *ngFor="let char of searchedCharacters">
+            <app-card [character]="char"></app-card>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="noCharacterFoundMessage">
+          <p class="text-white text-center col-span-3 font-medium text-2xl">
+            {{ noCharacterFoundMessage }}
+          </p>
+          <button
+            (click)="handleBackToAll()"
+            class="bg-white text-slate-800 font-medium text-l py-3 rounded-xl col-start-2 col-span-1"
+          >
+            Back to All
+          </button>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!inputCharacterName">
+        <ng-container *ngFor="let char of characterArr">
+          <app-card [character]="char"></app-card>
+        </ng-container>
       </ng-container>
     </ng-container>
   </ng-container>

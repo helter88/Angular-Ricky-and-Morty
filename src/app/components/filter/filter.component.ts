@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { SearchParamsService } from 'src/app/services/search-params.service';
+import { InputSearchService } from 'src/app/services/input-search.service';
 
 @Component({
   selector: 'app-filter',
@@ -12,7 +12,7 @@ export class FilterComponent {
 
   @Output() radioEmit = new EventEmitter<string>();
 
-  constructor(private searchParam: SearchParamsService) {}
+  constructor(private inputSearch: InputSearchService) {}
 
   onRadioChange() {
     return this.radioEmit.emit(this.selectedRadioValue);
@@ -20,13 +20,13 @@ export class FilterComponent {
 
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Enter' && this.inputText.length > 0) {
-      this.searchParam.createSearchParam(this.inputText);
+      this.inputSearch.saveInputValue(this.inputText);
       this.inputText = '';
     }
   }
 
   onSearchClick() {
-    this.searchParam.createSearchParam(this.inputText);
+    this.inputSearch.saveInputValue(this.inputText);
     this.inputText = '';
   }
 }

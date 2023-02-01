@@ -63,9 +63,11 @@ export class CharacterService {
       ];
     }
   }
-}
-function tab(
-  arg0: (rs: any) => void
-): import('rxjs').OperatorFunction<Result[], Result[]> {
-  throw new Error('Function not implemented.');
+
+  getSearched(name: string) {
+    return this.http.get<Root>(this.apiKey + `/?name=${name}`).pipe(
+      map((resp: Root) => this.transformData(resp)),
+      map((resp) => resp.slice(0, 10))
+    );
+  }
 }
