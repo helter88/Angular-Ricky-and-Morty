@@ -1,45 +1,38 @@
-# Angular Rick And Morty
+# The Rick And Morty
 
-<img src="./readme_images/breaking-news-main.png" alt="project image">
-> This applicattion is an information platform
+<img src="./readme_images/rick-and-morty-main.png" alt="project image">
 
-> API Requests from the browser are not allowed on the Developer plan, except from localhost so check app you have to run it localy on your computer.
+> See demo live : [click here](https://ricky-and-morty-angular.netlify.app/ "click to open link")
 
 ## Description
 
-The purpose of application is to fetch the newest news and displaying them. The application contains two filters:
-
-- Country: Poland, Czech Republic, Germany (default Poland)
-- Results on page (pageSize)- range between 0 – 100 (default 10)
-
-The filter results which client choosen should be saved by localStorage. There should be displayed titile: ” Wyświetlono [pageSize] najnowszych wiadomości dla kraju: [country]”
-over the list of news.
-News should be presented in two columns, in a card format which contain:
-
-- title
-- date in format (dd.mm.yyyy)
-- description with a maximum of 60 characters. If the description from API is longer than 60 characters, it should be cut and ended with ”…”
-
-Each card should contain a link to the news, which will open in a new window after clicking it.
-The aplication written in Polish. Styling should be done in SCSS without without UI ready-made frameworksl .
-
-## How to run app
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Build a web application that lists characters from the Rick and Morty sitcom
+Requirements
+• Fetch data from rickandmortyapi.com
+• Characters should be displayed in 3-column list
+• Elements from list should contain name of charakter and photo
+• List should contain max. 10
+• Filter characters by name
+• Add functionality to add characters to "favorites" and functionality to display favorites only
+• Remember favorites after refreshing page
 
 ## Features
 
-- Page with articles list
-- Country filter to choose articles from Poland, Czech Republic and Germany
-- Articles per site filter
-- Saving chosen filters data in Local Storage
-- Clickable article card
-- Paginator to choose next or previous articles list
+- Page with characters
+- Card with name image and star
+- Possibility to add character to likes after clicking the star
+- Full color star add to liked, empty star no
+- Store liked characters in local storage
+- Filter to choose all characters or liked characters
+- Search characters by writing name in input
+- Display searched characters
+- Display error message from API if there are no characters
+- Click button to back to all characters
 
 ## Built using
 
 - Angular 15.1.1
 - Typescript 4.8.4
 - RxJS 7.5.7
-- SCSS
+- Tailwind
 - [The Rick and Morty API](https://rickandmortyapi.com/ "click to visit API website")
